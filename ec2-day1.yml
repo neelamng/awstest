@@ -21,4 +21,4 @@ Resources:
         - Key: Name
           Value: appserver2
         - Key: test
-          Value: dbserver2
+          Value: dbserver3
