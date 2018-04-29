@@ -1,3 +1,4 @@
+#testinggit
 Resources:
    ec2instance2: 
         Type: "AWS::EC2::Instance"
@@ -10,7 +11,7 @@ Resources:
                 Value: Linuxserver
             SecurityGroupIds:
              - !Ref InstanceSecurityGroup     
-   InstanceSecurityGroup:
+   InstanceSecurityGroup: 
         Type: AWS::EC2::SecurityGroup
         Properties:
             GroupDescription: Allow http to client host
