@@ -1,0 +1,31 @@
+Resources:
+   ec2instance2: 
+        Type: "AWS::EC2::Instance"
+        Properties: 
+            ImageId: ami-fa2a9785
+            InstanceType: t2.micro
+            KeyName: awskey 
+            Tags: 
+             -  Key: Name
+                Value: Linuxserver
+            SecurityGroupIds:
+             - !Ref InstanceSecurityGroup     
+   InstanceSecurityGroup:
+        Type: AWS::EC2::SecurityGroup
+        Properties:
+            GroupDescription: Allow http to client host
+            SecurityGroupIngress:
+            - IpProtocol: tcp
+              FromPort: '80'
+              ToPort: '80'
+              CidrIp: 0.0.0.0/0
+            SecurityGroupEgress:
+            - IpProtocol: tcp
+              FromPort: '80'
+              ToPort: '80'
+              CidrIp: 0.0.0.0/0 
+            VpcId: vpc-c0c882bb     
+Outputs:
+  ec2output:  
+    Description:  PublicIP
+    Value: !GetAtt ec2instance2.PublicIp

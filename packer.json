@@ -1,0 +1,24 @@
+{
+    "builders":[
+    {
+    "type": "amazon-ebs",
+    "region": "us-east-1",
+    "source_ami": "ami-6871a115",
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "packer-quick-start {{timestamp}}"
+    }
+    ],
+    "provisioners": [
+        {
+          "type": "shell",
+          "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+          "inline": [
+            "yum install httpd -y",
+            "service httpd start",
+            "echo  'This is a webserver - Created with packer' > /var/www/html/index.html",
+            "chkconfig httpd on"
+          ]    
+        }
+    ]
+}

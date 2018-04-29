@@ -1,0 +1,24 @@
+Resources:
+  ec2instance1:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-6871a115
+      InstanceType: t2.micro
+      KeyName: awskey
+      Tags: 
+        - Key: Name
+          Value: appserver1
+        - Key: test
+          Value: dbserver1
+
+  ec2instance2:
+    Type: "AWS::EC2::Instance"
+    Properties: 
+      ImageId: ami-6871a115
+      InstanceType: t2.micro
+      KeyName: awskey
+      Tags: 
+        - Key: Name
+          Value: appserver2
+        - Key: test
+          Value: dbserver2
