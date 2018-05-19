@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'redhat-agent'
+    }
+
+  }
   stages {
     stage('Validate packer') {
       steps {
