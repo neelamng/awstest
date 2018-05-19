@@ -6,20 +6,11 @@ pipeline {
 
   }
   stages {
-    stage('Validate packer') {
-      parallel {
-        stage('Validate packer') {
-          steps {
-            bat(script: 'packer validate packer.json', returnStatus: true, returnStdout: true)
-          }
-        }
-        stage('install packer') {
-          steps {
-            sh '''curl -o packer.zip https://releases.hashicorp.com/packer/1.1.3/packer_1.1.3_linux_amd64.zip?_ga=2.25536829.1444204868.1515428339-1209176675.1503914009
+    stage('install packer') {
+      steps {
+        sh '''curl -o packer.zip https://releases.hashicorp.com/packer/1.1.3/packer_1.1.3_linux_amd64.zip?_ga=2.25536829.1444204868.1515428339-1209176675.1503914009
 unzip -o packer.zip
-'''
-          }
-        }
+./packer validate packer.json'''
       }
     }
     stage('Build AMI') {
@@ -37,8 +28,5 @@ unzip -o packer.zip
         archiveArtifacts 'output.txt'
       }
     }
-  }
-  environment {
-    AWS_SHARED_CREDENTIALS_FILE = 'C:\\Users\\nagaraj\\.aws\\credentials'
   }
 }
