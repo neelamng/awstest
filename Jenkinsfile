@@ -16,7 +16,8 @@ curl -o packer.zip https://releases.hashicorp.com/packer/1.1.3/packer_1.1.3_linu
     }
     stage('Build AMI') {
       steps {
-        bat(script: 'C:/packer.exe build packer.json > output.txt', returnStatus: true, returnStdout: true)
+        sh '''./packer build packer.json
+'''
       }
     }
     stage('deploy cloudformation') {
