@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Validate packer') {
       steps {
-        bat(script: 'C:/packer.exe validate packer.json', returnStatus: true, returnStdout: true)
+        bat(script: 'packer validate packer.json', returnStatus: true, returnStdout: true)
       }
     }
     stage('Build AMI') {
