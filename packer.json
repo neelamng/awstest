@@ -10,7 +10,7 @@
     }
     ],
     "provisioners": [
-        {
+            {
           "type": "shell",
           "execute_command": "sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
           "inline": [
@@ -20,5 +20,12 @@
             "chkconfig httpd on"
           ]    
         }
+    ],
+    "post-processors": [
+      {
+        "type": "manifest",
+        "output": "manifest.json",
+        "strip_path": true
+      }
     ]
 }
