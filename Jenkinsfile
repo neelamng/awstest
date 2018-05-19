@@ -20,11 +20,7 @@ curl -o packer.zip https://releases.hashicorp.com/packer/1.1.3/packer_1.1.3_linu
 '''
         sh '''ami=$(grep artifact manifest.json | tail -1 | awk -F\':\' \'{print $3}\' | sed \'s/\\",//g\')
 echo $ami'''
-      }
-    }
-    stage('deploy cloudformation') {
-      steps {
-        bat(script: 'aws cloudformation create-stack --stack-name stacknew --template-body file://C:/aws/ec2-testwork.yml', returnStatus: true, returnStdout: true)
+        sh 'aws cloudformation create-stack --stack-name myteststack --template-body file://ec2-testwork.yml --parameters ParameterKey=AMIID,ParameterValue=${ami} --capabilities CAPABILITY_IAM --region us-east-1'
       }
     }
     stage('archive output') {
