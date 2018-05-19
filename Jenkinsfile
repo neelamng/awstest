@@ -18,6 +18,8 @@ curl -o packer.zip https://releases.hashicorp.com/packer/1.1.3/packer_1.1.3_linu
       steps {
         sh '''./packer build packer.json
 '''
+        sh '''ami=$(grep artifact manifest.json | tail -1 | awk -F\':\' \'{print $3}\' | sed \'s/\\",//g\')
+echo $ami'''
       }
     }
     stage('deploy cloudformation') {
