@@ -15,7 +15,9 @@ pipeline {
         }
         stage('install packer') {
           steps {
-            sh 'curl -o packer.zip https://releases.hashicorp.com/packer/1.1.3/packer_1.1.3_linux_amd64.zip?_ga=2.25536829.1444204868.1515428339-1209176675.1503914009'
+            sh '''curl -o packer.zip https://releases.hashicorp.com/packer/1.1.3/packer_1.1.3_linux_amd64.zip?_ga=2.25536829.1444204868.1515428339-1209176675.1503914009
+unzip -o packer.zip
+'''
           }
         }
       }
